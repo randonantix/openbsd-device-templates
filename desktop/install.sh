@@ -113,3 +113,7 @@ touch ~/.config/fontconfig/fonts.conf
 
 doas pkg_add -v chromium
 
+# Note on /etc/resolv.conf
+# If the device is using DHCP, resolvd will keep overwriting resolv.conf
+# In order to change the nameserver:
+# doas route nameserver em0 <IP_OF_ROUTER_OR_OTHER_DNS>

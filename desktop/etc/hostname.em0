@@ -4,5 +4,6 @@
 # Or, the results for `ifconfig` for em1 on the router,
 # if the router is configured to get its address
 # via DHCP (currently the default behavior due to VM networking)
-inet 172.16.225.134 255.255.255.0 172.16.255.255
-#inet6 TODO
+#inet 172.16.225.134 255.255.255.0 172.16.255.255
+inet autoconf
+inet6 autoconf
