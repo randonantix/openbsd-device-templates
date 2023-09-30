@@ -1,0 +1,4 @@
+-vnetid parent em1
+inet 192.168.82.1 255.255.255.0 192.168.82.255
+#inet autoconf
+# NOTE: This configuration is NOT confirmed working yet

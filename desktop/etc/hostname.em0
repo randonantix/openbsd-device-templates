@@ -1,0 +1,8 @@
+# Should match your network setup.
+# For example, if using the router template, 
+# the subnet should match router/etc/hostname.em1
+# Or, the results for `ifconfig` for em1 on the router,
+# if the router is configured to get its address
+# via DHCP (currently the default behavior due to VM networking)
+inet 172.16.225.134 255.255.255.0 172.16.255.255
+#inet6 TODO

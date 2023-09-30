@@ -1,0 +1,4 @@
+dhcpd_flags=em1
+# if using wireless/wlan0
+#dhcpd_flags=em1 wlan0
+unbound_flags=

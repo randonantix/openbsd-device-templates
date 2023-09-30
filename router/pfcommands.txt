@@ -1,0 +1,31 @@
+# Load file changes
+pfctl -f /etc/pfc.conf
+
+# Show members of table called "locals"
+pfctl -t local -vTshow    
+
+# Test if an address is matched in table "locals"
+pfctl -t locals -vTtest 192.168.2.134 
+
+# Display the number of addresses on each table, the
+# number of rules which reference the table, and the global packet
+# statistics for the whole table
+pfctl -vvsTables
+
+# Show current rules with reverse DNS lookups and debug (-g)
+pfctl -r -s rules -v -g
+
+# Show current states with reverse DNS lookups and debug (-g)
+pfctl -r -s states -v -g
+                                       
+# Show list of interfaces with rules (e.g., egress, carp, re0)
+pfctl -s Interfaces     
+
+# Show list of tables
+pfctl -s Tables
+
+# Show all
+pfctl -s all
+
+# Read directly from pflog0 in real-time
+tcpdump -n -e -ttt -i pflog0
