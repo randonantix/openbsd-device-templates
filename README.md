@@ -10,7 +10,7 @@ Templates for setting up OpenBSD for different device type configurations. Inten
 
 - [Desktop/admin device (1 network interface)](https://drive.google.com/file/d/1n-Di5mn6PbEydKYyifEfaGm6NWGzIdYa/view?usp=drive_link) (user:obsd, password:openbsd)
 
-2. For the router, go to the VM's settings page before starting it and make sure the second network adapter is set to NAT (VirtualBox) or "Internet Sharing" (VMWare)
+2. For the router, go to the VM's settings page before starting it and make sure the second network adapter is set to "Internal Network" (VirtualBox) or "Private to my <DEVICE>" (VMWare)
 
 3. Boot the machines and change the `root` and `user` passwords:
 
@@ -46,10 +46,6 @@ $ doas route nameserver em0 <ROUTER_EM1_INTERFACE_IP>
 ```
 tcpdump -n -e -ttt -i pflog0
 ```
-
-
-
-
 
 ## Below here does not work yet
 
