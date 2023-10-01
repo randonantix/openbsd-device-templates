@@ -6,7 +6,7 @@ Templates for setting up OpenBSD for different device type configurations. Inten
 
 1. Import one of the VM appliance templates into VirtualBox or VMWare. VirtualBox note: When importing, rename the VM and also choose the "generate new mac addresses for all adapters" option.
 
-- [Router (2 network interfaces) TODO once upload finishes](TODO) (user:obsd, password:openbsd)
+- [Router (2 network interfaces)](https://drive.google.com/file/d/1ArJHvuf3_sf0qmMnhBYmmEvdYIGIImvX/view?usp=drive_link) (user:obsd, password:openbsd)
 
 - [Desktop/admin device (1 network interface)](https://drive.google.com/file/d/1n-Di5mn6PbEydKYyifEfaGm6NWGzIdYa/view?usp=drive_link) (user:obsd, password:openbsd)
 
