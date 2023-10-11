@@ -1,6 +1,21 @@
 # https://www.c0ffee.net/blog/openbsd-on-a-laptop
 
+
+# Allows the FTP proxy to work to allow pkg_add instead of allowing HTTPS traffic
+# ? Do we need the rule to allow HTTPS anyway for desktop browsers?
+# TODO: Could also do this instead? But then pkg_add still won't work later
+# export PKG_PATH=ftp://ftp.usa.openbsd.org/pub/OpenBSD
+# List from here: https://www.openbsd.org/ftp.html#ftp
+# TODO: Think about getting this list programmatically
+doas ksh -c "echo 'ftp://ftp.usa.openbsd.org/pub/OpenBSD' > /etc/installUrl"
+
+# https://github.com/bluhm/mirror-openbsd
+doas pkg_add -v git
+
+
 usermod -G staff $(whoami)
+
+# TODO: prompt things like: do you want to install Neovim? etc
 
 #
 # /etc/login.conf
@@ -33,31 +48,32 @@ usermod -G staff $(whoami)
 # kern.maxvnodes=262144
 # kern.somaxconn=2048
 
-sed -i 's/www\.google\.com/www.duckduckgo.com/' /etc/ntpd.conf
+sed -i 's/www\.google\.com/www.cloudflare.com/' /etc/ntpd.conf
 # or
 # sed -i '/google/d' /etc/ntpd.conf
 rcctl restart ntpd
 
 mkdir -p ~/.config/gtk-3.0
 
-# ~/.config/gtk-3.0/settings.ini
-# [Settings]
-# gtk-theme-name=Adwaita
-# gtk-icon-theme-name=Adwaita
-# gtk-font-name=Arimo 9
-# gtk-toolbar-style=GTK_TOOLBAR_ICONS
-# gtk-toolbar-icon-size=GTK_ICON_SIZE_SMALL_TOOLBAR
-# gtk-button-images=1
-# gtk-menu-images=1
-# gtk-enable-event-sounds=1
-# gtk-enable-input-feedback-sounds=1
-# gtk-xft-antialias=1
-# gtk-xft-hinting=1
-# gtk-xft-hintstyle=hintslight
-# gtk-xft-rgba=rgb
-# gtk-cursor-theme-size=0
-# gtk-cursor-theme-name=Default
-# gtk-key-theme-name=Default
+cat >> ~/.config/gtk-3.0/settings.ini << EOF
+[Settings]
+gtk-theme-name=Adwaita
+gtk-icon-theme-name=Adwaita
+gtk-font-name=Arimo 9
+gtk-toolbar-style=GTK_TOOLBAR_ICONS
+gtk-toolbar-icon-size=GTK_ICON_SIZE_SMALL_TOOLBAR
+gtk-button-images=1
+gtk-menu-images=1
+gtk-enable-event-sounds=1
+gtk-enable-input-feedback-sounds=1
+gtk-xft-antialias=1
+gtk-xft-hinting=1
+gtk-xft-hintstyle=hintslight
+gtk-xft-rgba=rgb
+gtk-cursor-theme-size=0
+gtk-cursor-theme-name=Default
+gtk-key-theme-name=Default
+EOF
 
 mkdir -p ~/.config/fontconfig
 touch ~/.config/fontconfig/fonts.conf
@@ -117,3 +133,10 @@ doas pkg_add -v chromium
 # If the device is using DHCP, resolvd will keep overwriting resolv.conf
 # In order to change the nameserver:
 # doas route nameserver em0 <IP_OF_ROUTER_OR_OTHER_DNS>
+
+
+doas rcctl enable xenodm
+doas rcctl start xenodm
+
+
+doas syspatch
