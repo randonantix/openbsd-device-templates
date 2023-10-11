@@ -29,3 +29,6 @@ pfctl -s all
 
 # Read directly from pflog0 in real-time
 tcpdump -n -e -ttt -i pflog0
+
+# !Low level pf interface info
+# https://stackoverflow.com/a/51902462/2533679
