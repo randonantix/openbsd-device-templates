@@ -140,3 +140,10 @@ doas rcctl start xenodm
 
 
 doas syspatch
+
+
+
+nvim --headless -c 'call mkdir(stdpath("config"), "p") | exe "edit" stdpath("config") . "/init.lua" | write | quit'
+nvim -c 'edit $MYVIMRC' # then copy from init.lua
+#doas pkg_add -v terminus-nerd-fonts
+#ls /usr/local/share/fonts/nerd-fonts/
