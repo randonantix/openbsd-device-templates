@@ -117,3 +117,14 @@ doas perl -pse -i 'if($n>0) {s{#forward-zone:}{--$n ? $& : "forward-zone:"}ge}' 
 # find . -type f -print | xargs perl -pi.bak -e 's/http\:\/\/www\.oldwebaddress\.com\/techblog/https\:\/\/github\.com\/myname/g'
 # https://unix.stackexchange.com/questions/617626/how-do-we-use-sed-to-replace-specific-line-with-a-string-variable
 
+
+
+# NFS
+# https://blog.strus.guru/2021/10/containerized-development-environment-on-openbsd-with-podman/
+doas rcctl enable portmap nfsd mountd statd
+# /etc/exports
+#/var/www -network=172.16.225.1 -mask=255.255.255.0
+doas rcctl start portmap nfsd mountd statd
+# https://www.cyberciti.biz/faq/apple-mac-osx-nfs-mount-command-tutorial/
+#showmount -e 172.16.225.131
+#sudo mount -o resvport,rw -t nfs 172.16.225.131:/var/www /private/nfs/odesktop 
