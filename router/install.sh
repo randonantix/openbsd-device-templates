@@ -123,8 +123,37 @@ doas perl -pse -i 'if($n>0) {s{#forward-zone:}{--$n ? $& : "forward-zone:"}ge}' 
 # https://blog.strus.guru/2021/10/containerized-development-environment-on-openbsd-with-podman/
 doas rcctl enable portmap nfsd mountd statd
 # /etc/exports
+# TODO: change to use either -mapall=root or -maproot=root or -maproot=obsd
 #/var/www -network=172.16.225.1 -mask=255.255.255.0
 doas rcctl start portmap nfsd mountd statd
+# Mount on macOS
 # https://www.cyberciti.biz/faq/apple-mac-osx-nfs-mount-command-tutorial/
 #showmount -e 172.16.225.131
 #sudo mount -o resvport,rw -t nfs 172.16.225.131:/var/www /private/nfs/odesktop 
+
+
+#### doas pkg_add -v python--
+#doas pkg_add py3-virtualenv
+#mkdir /var/www/htdocs/ohsnap-web
+#cd /var/www/htdocs/ohsnap-web
+#. bin/activate
+#git clone https://github.com/dotpy/py-pf.git
+#cd py-pf
+#python setup.py install
+#python setup.py test # permission denied errors
+
+# copied into web directory
+#doas cp -rv ../py-pf/pf .
+
+
+
+doas pkg_add -v mosquitto py3-paho-mqtt
+doas rcctl enable mosquitto
+doas rcctl start mosquitto
+#mosquitto_pub -h 127.0.0.1 -t 'test' -m "test"
+
+#doas pkg_add -v protobuf-c py3-protobuf
+
+#protoc-c --proto_path=/usr/local/include/google/protobuf/ --proto_path=/usr/local/include --proto_path=. --c_out=. divert.proto
+#protoc --proto_path=/usr/local/include/google/protobuf/ --proto_path=/usr/local/include --proto_path=. --python_out=. divert.proto
+#cc divert.pb-c.c divert.c -o divert -lprotobuf-c -I /usr/local/include -L /usr/local/lib
