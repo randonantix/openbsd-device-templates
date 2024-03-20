@@ -6,6 +6,12 @@ Templates for setting up OpenBSD for different device type configurations. Inten
 
 1. Import one of the VM appliance templates into VirtualBox or VMWare. VirtualBox note: When importing, rename the VM and also choose the "generate new mac addresses for all adapters" option.
 
+<!-- TODO: Add how to import appliance -->
+
+<!-- TODO: Need to add shared private network in VMWare or VirtualBox
+https://www.youtube.com/watch?v=kdfUZYFY7f0
+ -->
+
 - [Router (2 network interfaces)](https://drive.google.com/file/d/1ArJHvuf3_sf0qmMnhBYmmEvdYIGIImvX/view?usp=drive_link) (user:obsd, password:openbsd)
 
 - [Desktop/admin device (1 network interface)](https://drive.google.com/file/d/1n-Di5mn6PbEydKYyifEfaGm6NWGzIdYa/view?usp=drive_link) (user:obsd, password:openbsd)
@@ -60,3 +66,26 @@ cd openbsd-device-templates
 sh ./configure.sh --config router
 
 ```
+
+# TODO
+
+Build a proxy tool using "break and inspect" that can manage multiple identies, check for PII and let you know eg. if you're about to sign in or access a website from a different identity or an IP address linked to another identity
+
+Layer 7 WAF (or other application) firewall - like something that protects a monero port, etc, using relayd
+
+https://man.openbsd.org/carp
+
+https://www.tumfatig.net/2021/self-host-a-password-manager-on-openbsd/
+https://www.tumfatig.net/2020/a-mesh-vpn-using-openbsd-and-wireguard/
+https://www.tumfatig.net/2019/automated-openbsd-deployment-on-vmd8/
+https://www.tumfatig.net/2011/back-to-the-sea-the-certificate-authority-ca-episode-iv/
+https://www.ventoy.net/en/index.html
+
+https://www.shibboleth.net/products/ SSO works with https://www.seafile.com/en/product/private_server/
+https://www.sparkleshare.org
+https://hub.docker.com/r/pydio/cells/
+https://pydio.com/en/download
+
+Tray application example:
+https://github.com/syncthing/syncthing-macos
+https://github.com/syncthing/syncthing
