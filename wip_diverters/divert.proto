@@ -1,0 +1,9 @@
+syntax = "proto2";
+
+// https://github.com/protobuf-c/protobuf-c/wiki/Examples
+message DivertMessage {
+	optional int32 src_port = 1;
+	optional int32 dst_port = 2;
+	optional string src_host = 3;
+	optional string dst_host = 4;
+}
