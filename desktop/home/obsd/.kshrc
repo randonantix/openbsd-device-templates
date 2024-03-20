@@ -1,3 +1,4 @@
+#! TODO: JFC the default shell is csh for user, so need to set it to ksh. Grr
 # use vim if it's installed, vi otherwise
 case "$(command -v vim)" in
   */vim) VIM=vim ;;

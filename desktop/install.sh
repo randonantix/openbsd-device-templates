@@ -147,3 +147,11 @@ nvim --headless -c 'call mkdir(stdpath("config"), "p") | exe "edit" stdpath("con
 nvim -c 'edit $MYVIMRC' # then copy from init.lua
 #doas pkg_add -v terminus-nerd-fonts
 #ls /usr/local/share/fonts/nerd-fonts/
+
+
+doas pkg_add -v cscope
+# select iconv version?
+doas pkg_add -v universal-ctags
+# Use vim opts tags = '/home/obsd/.config/nvim/system.tags,tags'
+uctags -f /home/obsd/.config/nvim/system.tags /usr/include/*
+#uctags divert.c

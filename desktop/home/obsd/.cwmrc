@@ -123,6 +123,7 @@ unbind-mouse M-3
 unbind-mouse CMS-3
 
 # mod + left click drag = move window
+# TODO: this didn't work for me in the VM
 bind-mouse 4-1 window-move
 # mod + right click drag = resize window
 bind-mouse 4-3 window-resize

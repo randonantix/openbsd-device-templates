@@ -12,6 +12,11 @@ vim.opt.breakindent = true
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = false
 
+-- Use Ctrl-n for basic autocomplete. Ctrl-x,Ctrl-o is supposed to bring up omnicomplete
+-- see also universal-ctags package
+vim.opt.tags = '/home/obsd/.config/nvim/system.tags,tags'
+vim.opt.omnifunc = 'ccomplete#Complete'
+
 
 -- Space as leader key
 --vim.g.mapleader = '/'
@@ -61,6 +66,7 @@ lazy.setup({
 	{'nvim-tree/nvim-web-devicons'},
 	{'akinsho/bufferline.nvim'},
 	{'nvim-tree/nvim-tree.lua'},
+  {'terrortylor/nvim-comment'},
 })
 
 
@@ -117,6 +123,6 @@ require('bufferline').setup({
 
 
 require("nvim-tree").setup()
-
+require('nvim_comment').setup()
 
 vim.keymap.set('n', '<leader>t', '<cmd>NvimTreeToggle<cr>')
