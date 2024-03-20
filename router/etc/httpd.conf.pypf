@@ -1,0 +1,12 @@
+# Use with `doas slowcgi -d -p / -v`
+
+chroot "/"
+logdir "/var/www/logs"
+
+server "default" {
+  listen on * port 80
+  location "*.py" {
+  	fastcgi socket "/var/www/run/slowcgi.sock"
+  }
+  root "/var/www/htdocs/ohsnap-web/web"
+}
