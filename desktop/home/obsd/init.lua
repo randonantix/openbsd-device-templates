@@ -11,11 +11,13 @@ vim.opt.wrap = true
 vim.opt.breakindent = true
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = false
+vim.opt.autowrite = true
 
 -- Use Ctrl-n for basic autocomplete. Ctrl-x,Ctrl-o is supposed to bring up omnicomplete
 -- see also universal-ctags package
 vim.opt.tags = '/home/obsd/.config/nvim/system.tags,tags'
 vim.opt.omnifunc = 'ccomplete#Complete'
+vim.opt.confirm = true
 
 
 -- Space as leader key
@@ -24,6 +26,30 @@ vim.opt.omnifunc = 'ccomplete#Complete'
 -- ======================================================================
 
 vim.keymap.set('n', '<leader>w', '<cmd>write<cr>', {desc = 'Save'})
+-- save file
+vim.keymap.set({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
+
+-- better indenting
+vim.keymap.set("v", "<", "<gv")
+vim.keymap.set("v", ">", ">gv")
+
+-- commenting
+vim.keymap.set("v", "/", "<cmd>normal gcc<cr>")
+-- vim.keymap.set("v", "<leader>/", "0x")
+
+vim.keymap.set("n", "<leader>\\", "I<esc><cmd>normal gcc<cr>", { desc = "Comment current line" })
+vim.keymap.set("n", "<leader>o", "o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Below" })
+vim.keymap.set("n", "<leader>O", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Above" })
+
+vim.keymap.set("n", "gco", "o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Below" })
+vim.keymap.set("n", "gcO", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Above" })
+
+-- go-vim
+vim.keymap.set("n", "<C-n>", ":cnext<CR>", { desc = "Go to next error in GoBuild", remap = true })
+vim.keymap.set("n", "<C-m>", ":cprevious<CR>", { desc = "Go to previous error in GoBuild", remap = true })
+vim.keymap.set('n', '<leader>a', ':cclose<CR>', { desc = 'Close', remap = false})
+vim.keymap.set('n', '<leader>b', '<Plug>(go-build)', { desc = ':GoBuild', remap = true})
+vim.keymap.set('n', '<leader>r', '<Plug>(go-run)', { desc = ':GoRun', remap = true})
 
 -- ======================================================================
 
@@ -63,10 +89,16 @@ lazy.opts = {}
 lazy.setup({
 	{'nvim-lualine/lualine.nvim'},
 	{'folke/tokyonight.nvim'},
+	{'folke/which-key.nvim'},
 	{'nvim-tree/nvim-web-devicons'},
 	{'akinsho/bufferline.nvim'},
 	{'nvim-tree/nvim-tree.lua'},
   {'terrortylor/nvim-comment'},
+	{'fatih/vim-go'},
+	-- {'Shougo/neocomplete.vim'},
+	{'Shougo/deoplete.nvim'},
+	-- {'junegunn/fzf'},
+	{'majutsushi/tagbar'},
 })
 
 
@@ -126,3 +158,12 @@ require("nvim-tree").setup()
 require('nvim_comment').setup()
 
 vim.keymap.set('n', '<leader>t', '<cmd>NvimTreeToggle<cr>')
+
+local wk = require("which-key")
+wk.add({
+  {
+		mode = { "n", "v" }, -- NORMAL and VISUAL mode
+    { "<leader>q", "<cmd>q<cr>", desc = "Quit" }, -- no need to specify mode since it's inherited
+    { "<leader>w", "<cmd>w<cr>", desc = "Write" },
+	}
+})
