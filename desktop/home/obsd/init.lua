@@ -13,10 +13,11 @@ vim.opt.shiftwidth = 2
 vim.opt.expandtab = false
 vim.opt.autowrite = true
 
--- Use Ctrl-n for basic autocomplete. Ctrl-x,Ctrl-o is supposed to bring up omnicomplete
+-- Use Ctrl-n for basic autocomplete. Ctrl-N, Ctrl-P, Ctrl-x,Ctrl-o is supposed to bring up omnicomplete
 -- see also universal-ctags package
-vim.opt.tags = '/home/obsd/.config/nvim/system.tags,tags'
-vim.opt.omnifunc = 'ccomplete#Complete'
+-- may not be compatible with clang_complete. Hard to tell. docs suggest `g:clang_omnicomplete_compliance
+--vim.opt.tags = '/home/obsd/.config/nvim/system.tags,tags'
+--vim.opt.omnifunc = 'ccomplete#Complete'
 vim.opt.confirm = true
 
 
@@ -93,6 +94,7 @@ lazy.setup({
 	{'nvim-tree/nvim-web-devicons'},
 	{'akinsho/bufferline.nvim'},
 	{'nvim-tree/nvim-tree.lua'},
+	{'xavierd/clang_complete'},
   {'terrortylor/nvim-comment'},
 	{'fatih/vim-go'},
 	-- {'Shougo/neocomplete.vim'},
@@ -167,3 +169,7 @@ wk.add({
     { "<leader>w", "<cmd>w<cr>", desc = "Write" },
 	}
 })
+
+-- see also https://github.com/rust-lang/rust-bindgen/issues/2838 if using later version so of OpenBSD 7.4+
+-- :help clang_complete
+vim.g.clang_library_path = '/usr/local/lib'

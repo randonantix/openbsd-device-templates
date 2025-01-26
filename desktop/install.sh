@@ -148,6 +148,10 @@ nvim -c 'edit $MYVIMRC' # then copy from init.lua
 #doas pkg_add -v terminus-nerd-fonts
 #ls /usr/local/share/fonts/nerd-fonts/
 
+# https://github.com/rust-lang/rust-bindgen/issues/2838
+# unclear if llvm is really needed for clang_complete
+doas pkg_add llvm py3-pip
+pip install --break-system-packages pynvim
 
 doas pkg_add -v cscope
 # select iconv version?
